@@ -1,0 +1,32 @@
+author: instructor
+date: 2026-02-23
+question: |
+  In ext4's **ordered journaling** mode, only metadata is written to the
+  journal, but data blocks are forced to disk *before* the metadata
+  journal commit. A user calls `fsync()` on a newly written file.
+  Which of the following correctly describes what must happen before
+  `fsync()` returns?
+options:
+  - text: "Only the file's data blocks are flushed; metadata can remain in the journal buffer"
+    explanation: |
+      `fsync()` guarantees both data and metadata durability.
+      If metadata were still in the journal buffer, a crash could
+      lose the inode or directory entry pointing to the data.
+  - text: "Data blocks are written to their final locations, then a journal transaction with the metadata is committed and flushed to disk"
+    correct: true
+    explanation: |
+      In ordered mode, ext4 writes data to its final on-disk location
+      first. Then the metadata journal transaction (inode, block map,
+      directory entry) is committed. `fsync()` waits for both steps
+      to complete, ensuring full durability.
+  - text: "Both data and metadata are written to the journal, then checkpointed to their final locations"
+    explanation: |
+      This describes **full journaling** (`journal` mode), not ordered
+      mode. In ordered mode, only metadata goes to the journal — data
+      is written directly to its final location.
+  - text: "The file's metadata is committed to the journal first, then data blocks are written to their final locations"
+    explanation: |
+      This reverses the ordering guarantee. In ordered mode, data
+      *must* reach disk before the metadata commit. Otherwise a crash
+      after the metadata commit but before the data write would leave
+      stale or garbage data blocks referenced by valid metadata.

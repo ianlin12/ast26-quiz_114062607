@@ -1,0 +1,32 @@
+author: instructor
+date: 2026-02-23
+question: |
+  A database uses **write-ahead logging (WAL)** with ARIES-style
+  recovery. During crash recovery, the system performs three phases:
+  **analysis**, **redo**, and **undo**. Which of the following correctly
+  describes the purpose of the **redo** phase?
+options:
+  - text: "Redo re-applies only committed transactions that were lost from the buffer pool"
+    explanation: |
+      Redo does not distinguish between committed and uncommitted
+      transactions. It replays *all* logged updates (committed or not)
+      to restore the database to its exact pre-crash state. Uncommitted
+      transactions are then rolled back in the undo phase.
+  - text: "Redo replays all logged updates (committed and uncommitted) from the last checkpoint to restore the exact pre-crash state"
+    correct: true
+    explanation: |
+      The redo phase scans the WAL forward from the last checkpoint
+      and re-applies every update to bring all pages to their pre-crash
+      state. This includes updates from uncommitted transactions.
+      The subsequent undo phase then rolls back any transactions that
+      were active (not committed) at crash time.
+  - text: "Redo rolls back uncommitted transactions to ensure atomicity"
+    explanation: |
+      Rolling back uncommitted transactions is the job of the **undo**
+      phase, not redo. Redo's job is to *replay* all updates forward,
+      not to reverse them.
+  - text: "Redo rewrites the entire WAL to compact it before recovery proceeds"
+    explanation: |
+      WAL compaction is unrelated to crash recovery. The redo phase
+      reads the existing log and re-applies operations; it does not
+      modify or compact the log itself.

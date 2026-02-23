@@ -1,0 +1,31 @@
+author: instructor
+date: 2026-02-23
+question: |
+  A TLC (Triple-Level Cell) NAND flash stores 3 bits per cell.
+  Compared to an SLC (Single-Level Cell) chip with the same number of
+  cells, TLC offers **3x the capacity** but has worse endurance and
+  performance. Which of the following best explains why TLC endurance
+  is lower than SLC?
+options:
+  - text: "TLC cells are physically smaller, so they wear out faster"
+    explanation: |
+      Cell size is determined by the manufacturing process node,
+      not by the number of bits stored. SLC and TLC cells at the
+      same node can be the same physical size.
+  - text: "TLC requires narrower voltage margins to distinguish 8 levels, making cells more sensitive to charge loss from repeated P/E cycles"
+    correct: true
+    explanation: |
+      TLC stores 3 bits using $2^3 = 8$ voltage levels. The voltage
+      window between adjacent levels is much narrower than SLC's 2 levels.
+      As oxide degrades from program/erase cycles, charge trapping shifts
+      threshold voltages, and narrow margins cause read errors sooner.
+  - text: "TLC uses 3x as many program/erase cycles per write operation"
+    explanation: |
+      TLC does not require 3x P/E cycles per write. Each cell is
+      programmed once per page-write (using ISPP). The issue is
+      voltage margin sensitivity, not cycle multiplication.
+  - text: "TLC pages are 3x larger, causing more physical stress on the die"
+    explanation: |
+      Page size is a design choice independent of cell type. TLC's
+      lower endurance comes from tighter voltage margins, not from
+      page size or mechanical stress.

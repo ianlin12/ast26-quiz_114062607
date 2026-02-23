@@ -1,0 +1,14 @@
+{
+  "name": "storage-systems-quiz-pool",
+  "private": false,
+  "scripts": {
+    "validate": "node scripts/validate-quiz.js",
+    "scaffold": "node scripts/scaffold-from-graph.js"
+  },
+  "dependencies": {
+    "js-yaml": "^4.1.0"
+  },
+  "devDependencies": {
+    "@anthropic-ai/sdk": "^0.30.0"
+  }
+}

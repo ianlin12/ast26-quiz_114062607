@@ -1,0 +1,72 @@
+name: Quiz Review
+on:
+  pull_request:
+    paths: ['docs/**/quiz/q-*.yaml']
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+
+      - name: Get changed quiz files
+        id: changed
+        uses: tj-actions/changed-files@v44
+        with:
+          files: 'docs/**/quiz/q-*.yaml'
+
+      - name: Validate quiz files
+        if: steps.changed.outputs.any_changed == 'true'
+        run: node scripts/validate-quiz.js ${{ steps.changed.outputs.all_changed_files }}
+        env:
+          PR_AUTHOR: ${{ github.event.pull_request.user.login }}
+
+      - name: Post validation results
+        if: always() && steps.changed.outputs.any_changed == 'true'
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body-path: validation-results.md
+
+  claude-review:
+    needs: validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+
+      - name: Get changed quiz files
+        id: changed
+        uses: tj-actions/changed-files@v44
+        with:
+          files: 'docs/**/quiz/q-*.yaml'
+
+      - name: Claude review
+        if: steps.changed.outputs.any_changed == 'true'
+        run: node scripts/claude-review.js ${{ steps.changed.outputs.all_changed_files }}
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      - name: Post Claude review results
+        if: always() && steps.changed.outputs.any_changed == 'true'
+        uses: peter-evans/create-or-update-comment@v4
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          body-path: claude-review-results.md

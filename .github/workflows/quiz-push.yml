@@ -1,0 +1,32 @@
+name: Push Quizzes to Site
+on:
+  push:
+    branches: [main]
+    paths: ['docs/**/quiz/q-*.yaml']
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+
+      - name: Push to site
+        run: node scripts/push-to-site.js
+        env:
+          SITE_API_URL: ${{ secrets.SITE_API_URL }}
+          QUIZ_PUSH_TOKEN: ${{ secrets.QUIZ_PUSH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_SHA: ${{ github.sha }}

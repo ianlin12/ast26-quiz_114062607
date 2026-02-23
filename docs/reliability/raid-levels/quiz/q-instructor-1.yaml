@@ -1,0 +1,31 @@
+author: instructor
+date: 2026-02-23
+question: |
+  A RAID-5 array has 10 disks, each with an annual failure rate (AFR)
+  of 2%. After one disk fails, a rebuild takes 8 hours.
+  Approximately what is the probability of a **second** disk failing
+  during the rebuild window, causing data loss?
+options:
+  - text: "~0.016% (about 1 in 6,000)"
+    explanation: |
+      This underestimates by using the per-disk hourly failure rate
+      without multiplying by the number of remaining disks. With 9
+      surviving disks the risk is 9x higher.
+  - text: "~0.015% (about 1 in 6,700)"
+    explanation: |
+      Close, but this uses 10 disks instead of the 9 surviving disks.
+      After one disk fails, only 9 remain that could cause a second
+      failure during rebuild.
+  - text: "~0.016% (about 1 in 6,100)"
+    correct: true
+    explanation: |
+      Per-disk hourly failure rate = $0.02 / 8760 \approx 2.28 \times 10^{-6}$.
+      Probability *one specific* disk fails in 8h = $8 \times 2.28 \times 10^{-6} \approx 1.83 \times 10^{-5}$.
+      Probability *any* of the 9 surviving disks fails = $9 \times 1.83 \times 10^{-5} \approx 1.64 \times 10^{-4}$,
+      which is **~0.016%** or roughly **1 in 6,100**.
+  - text: "~2% (same as the annual failure rate)"
+    explanation: |
+      2% is the *annual* failure rate of a single disk. The rebuild
+      window is only 8 hours out of 8760, so the risk during that
+      window is roughly $8/8760 \approx 0.09\%$ of the annual rate
+      per disk — much smaller than 2%.

@@ -1,0 +1,92 @@
+pillars:
+  - slug: flash-ssd
+    name: "Flash & SSD Internals"
+    icon: "\u26A1"
+    concepts:
+      - slug: nand-cell-types
+        name: "NAND Flash Cell Types"
+      - slug: block-page-plane-hierarchy
+        name: "Block / Page / Plane Hierarchy"
+      - slug: ssd-architecture
+        name: "SSD Architecture"
+      - slug: ftl-flash-translation-layer
+        name: "Flash Translation Layer (FTL)"
+      - slug: garbage-collection
+        name: "Garbage Collection & Write Amplification"
+      - slug: wear-leveling
+        name: "Wear Leveling"
+
+  - slug: io-interfaces
+    name: "I/O Interfaces & Kernel"
+    icon: "\U0001F50C"
+    concepts:
+      - slug: block-device-layer
+        name: "Block Device Layer"
+      - slug: nvme-protocol
+        name: "NVMe Protocol"
+      - slug: io-schedulers
+        name: "I/O Schedulers"
+      - slug: dma-and-interrupts
+        name: "DMA & Interrupts"
+      - slug: io-uring
+        name: "io_uring & Async I/O"
+
+  - slug: indexing
+    name: "Indexing & Data Structures"
+    icon: "\U0001F4DA"
+    concepts:
+      - slug: btree-btreeplus
+        name: "B-Tree & B+Tree"
+      - slug: lsm-tree
+        name: "LSM-Tree"
+      - slug: bloom-filters
+        name: "Bloom Filters"
+      - slug: hash-indexing
+        name: "Hash Indexing"
+      - slug: learned-indexes
+        name: "Learned Indexes"
+
+  - slug: filesystems
+    name: "File Systems"
+    icon: "\U0001F4C1"
+    concepts:
+      - slug: journaling
+        name: "Journaling"
+      - slug: copy-on-write
+        name: "Copy-on-Write (COW)"
+      - slug: log-structured-fs
+        name: "Log-Structured File Systems"
+      - slug: extent-based-allocation
+        name: "Extent-Based Allocation"
+      - slug: filesystem-metadata
+        name: "File System Metadata & Inodes"
+
+  - slug: reliability
+    name: "Reliability & Fault Tolerance"
+    icon: "\U0001F6E1\uFE0F"
+    concepts:
+      - slug: raid-levels
+        name: "RAID Levels"
+      - slug: checksums-and-scrubbing
+        name: "Checksums & Scrubbing"
+      - slug: replication
+        name: "Replication"
+      - slug: erasure-coding
+        name: "Erasure Coding"
+      - slug: failure-models
+        name: "Failure Models"
+
+  - slug: data-systems
+    name: "Data Systems & Distributed Storage"
+    icon: "\U0001F5C4\uFE0F"
+    concepts:
+      - slug: write-ahead-logging
+        name: "Write-Ahead Logging (WAL)"
+      - slug: consensus-protocols
+        name: "Consensus Protocols"
+      - slug: distributed-storage
+        name: "Distributed Storage"
+      - slug: caching-strategies
+        name: "Caching Strategies"
+      - slug: storage-tiering
+        name: "Storage Tiering"

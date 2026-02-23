@@ -1,0 +1,33 @@
+author: instructor
+date: 2026-02-23
+question: |
+  An LSM-tree has a size ratio $T = 10$ between consecutive levels.
+  Level 0 (the in-memory buffer) is 64 MB, and data is compacted using
+  **leveled compaction**. In the worst case, what is the **write
+  amplification** for a single key-value pair that is initially written
+  to the memtable and eventually reaches Level 3?
+options:
+  - text: "$T \\times L = 10 \\times 3 = 30$"
+    correct: true
+    explanation: |
+      In leveled compaction, merging into level $i$ can rewrite up to
+      $T$ times the data (since level $i$ is $T$ times larger than
+      level $i-1$). Over $L = 3$ levels the worst-case write
+      amplification is $T \\times L = 10 \\times 3 = 30$.
+  - text: "$T^L = 10^3 = 1000$"
+    explanation: |
+      This confuses the *size ratio* with the *write amplification*.
+      $T^L$ gives the capacity of level $L$ relative to level 0, not
+      the total rewrites a key experiences. Write amplification is
+      additive across levels, not multiplicative.
+  - text: "$L = 3$"
+    explanation: |
+      This would be the write amplification if each compaction rewrote
+      data exactly once with no overlap — i.e., tiered compaction with
+      a size ratio of 1. Leveled compaction rewrites up to $T$ times
+      per level.
+  - text: "$T + L = 10 + 3 = 13$"
+    explanation: |
+      There is no standard formula that adds $T$ and $L$. The correct
+      model multiplies per-level cost ($T$) by the number of levels
+      ($L$).

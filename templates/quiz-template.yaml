@@ -1,0 +1,23 @@
+author: your-github-username
+date: 2026-01-01
+question: |
+  Write your question here. You can use **Markdown** formatting,
+  `inline code`, and math like $O(n \log n)$.
+
+  Multi-line questions are fine. Include enough context for the
+  question to stand on its own.
+options:
+  - text: "First option (the correct one in this example)"
+    correct: true
+    explanation: |
+      Explain WHY this is correct. Show the reasoning or calculation.
+  - text: "Second option (a plausible wrong answer)"
+    explanation: |
+      Explain the misconception this represents.
+      Why might a student pick this?
+  - text: "Third option"
+    explanation: |
+      Explain what's wrong and what it would be correct for.
+  - text: "Fourth option"
+    explanation: |
+      Explain the error in reasoning.
