@@ -3,9 +3,9 @@ date: 2026-05-28
 question: |
   下列有關 在 SSD 上運作 RAID-5 的問題。請問何者正確?
 options:
-  - text: "SSD 沒有機械磨損，所以同批採購不影響故障時間"
+  - text: "SSD 沒有機械磨損，所以故障時間不會受到使用方式影響"
     explanation: |
-      SSD 雖然沒有像 HDD 一樣有機械磨損，但是 SSD 有 P/E cycle 耗損問題
+      SSD 雖然沒有像 HDD 一樣有機械磨損，但是 SSD 有 P/E cycle 耗損問題，使用方式會直接決定其生命的長度
   - text: "如果在 SSD 上運作 RAID-5，則可能因為 cell 磨損速率幾乎一致，可能在相近時間同時失效，導致來不及 rebuild，資料消失"
     correct: true
     explanation: |
