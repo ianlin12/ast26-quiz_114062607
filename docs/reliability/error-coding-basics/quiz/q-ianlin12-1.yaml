@@ -1,16 +1,16 @@
 author: ianlin12
 date: 2026-05-14
 question: |
-  Hamming code 有 (7,4)、(15,11)、(31,26)、(63,57)...... 等一系列通常規格，
-  其規律(n,k) = (2^m - 1,2^m - m - 1)，試問如果隨著 m 增加，以下選項何者錯誤?
-
+  Hamming code 有 (7,4)、(15,11)、(31,26)、(63,57)...... 等一系列標準形式，
+  其規律(n,k)， n = 2^m − 1、k = 2^m − m − 1。已知所有標準 Hamming code 的 minimum distance d = 3。
+  隨著 m 增加，以下敘述何者錯誤？
 options:
   - text: "Code rate 會單調遞增並趨近於 1"
     explanation: |
       正確。Code rate = k/n = (2^m − m − 1)/(2^m − 1)。
       當 m → ∞ 時 m/2^m → 0，因此 rate → 1。
       m=3: 4/7 ≈ 57%；m=4: 11/15 ≈ 73%；m=8: 247/255 ≈ 97%。
-  - text: "minimum distance 隨著 m 增長"
+  - text: "能更正的 error 數會隨 m 增加"
     correct: true
     explanation: |
       錯誤。所有標準 Hamming code 的 minimum distance 都固定為 3，
