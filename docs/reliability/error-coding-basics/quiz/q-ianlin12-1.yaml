@@ -1,7 +1,7 @@
 author: ianlin12
 date: 2026-05-14
 question: |
-  Hamming code 有 (7,4)、(15,11)、(31,26)、(63,57)...... 等一系列標準形式，
+  Hamming code 有 (7,4)、(15,11)、(31,26)、(63,57)... 等一系列標準形式，
   其規律(n,k)， n = 2^m − 1、k = 2^m − m − 1。已知所有標準 Hamming code 的 minimum distance d = 3。
   隨著 m 增加，以下敘述何者錯誤？
 options:
